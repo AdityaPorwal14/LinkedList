@@ -69,6 +69,51 @@ class List{
         }
     }
 
+    void insert(int val, int pos){
+        if(pos < 0){
+            cout<<"insert correct pos";
+            return;
+        }
+
+        if(pos == 0){
+            push_front(val);
+            return;
+        }
+
+        else {
+            Node* temp = Head;
+            
+            for(int i=0; i<pos-1; i++){
+                if(temp == NULL){
+                    cout<<"invalid pos"<<endl;
+                }
+                temp = temp->next;
+            }
+
+            Node* newNode = new Node(val);
+            newNode->next = temp->next;
+            temp->next = newNode;
+        }
+    }
+
+    int search(int key){
+        Node* temp = Head;
+        int index = 0;
+
+        while(temp){
+            if(temp->data == key){
+                cout << "Search Operation activate..."<<endl;
+                cout << key << " is present on Location: " << index << endl;
+                return index;
+            }
+
+            temp = temp->next;
+            index++;
+        }
+
+        return -1;
+    }
+
     void printLL(){
         Node* temp = Head;
 
@@ -84,15 +129,18 @@ class List{
 int main(){
     List L1;
     
-    L1.push_front(10);
-    L1.push_front(20);
     L1.push_front(30);
+    L1.push_front(20);
+    L1.push_front(10);
+    //L1.insert(40,4);
 
-    L1.push_back(5);
-    L1.pop_front();
-    L1.pop_front();
+    L1.search(10);
 
-    L1.pop_back();
+    // L1.push_back(5);
+    // L1.pop_front();
+    // L1.pop_front();
+
+    // L1.pop_back();
 
     L1.printLL();
 }
